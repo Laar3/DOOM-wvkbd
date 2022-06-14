@@ -21,7 +21,7 @@ new features.
  - Support for 'Copy' keys which are not on the keymap
  - Emoji support
  - Compose key for character variants (e.g. diacritics)
- - Show/hide keyboard on signals (SIGUSR1 = hide, SIGUSR2 = show, SIGRTMIN = toggle)
+ - Show/hide keyboard on signals (SIGUSR1 = hide, SIGUSR2 = show)
  - Automatic portrait/landscape detection and subsequent layout switching
 
 
@@ -37,8 +37,7 @@ There are some areas that still need work:
 
 You'll need the following developer packages
 
- - cairo
- - pango
+ - pangocairo
  - wayland-client
  - xkbcommon
 
@@ -47,7 +46,7 @@ Make any customizations you would like in `config.def.h` and run `make`
 The default set of layouts is called `mobintl` *(mobile international)*, which groups various layouts aimed at mobile devices
 and also attempts to accommodate various international users. The resulting binary is called `wvkbd-mobintl`.
 
-You can, however, define your own layouts by copying and modifying `layout.mobintl.h` and `keymap.mobintl.h`
+You can, however, define your own layouts by copying and and modifying `layout.mobintl.h` and `keymap.mobintl.h`
 (replace `mobintl` for something like `yourlayout`). Then make your layout set using `make LAYOUT=yourlayout`, and
 the resulting binary will be `wvkbd-yourlayout`
 
@@ -60,8 +59,8 @@ want a subset of the available layers, you can define which wants you want and i
 them using the `-l` parameter. This takes takes a ordered comma separated list of
 layout names that are defined in your layout set.
 
-The keyboard can be hidden by sending it a `SIGUSR1` signal, shown again by sending it `SIGUSR2` or toggled by sending it `SIGRTMIN`.
-This saves some start up time and may be appropriate in some low-resource environments.
+The keyboard can be hidden by sending it a `SIGUSR1` signal and shown again by sending it `SIGUSR2`. This saves some
+start up time and may be appropriate in some low-resource environments.
 
 Wvkbd has an output mode `-o` that will echo its output to standard output. This facility can be used if users want
 audio/haptic feedback, a feature explicitly out of scope for wvkbd. To achieve this, simply pipe wvkbd's output through the external tool
@@ -76,17 +75,11 @@ Another output mode, `-O` will let the keyboard output keys which are swiped ove
 
 ## Contribute
 
-Any contributions are welcome, there are two ways to contribute, the first one is **preferred**:
+Any contributions are welcome, please tell me what I did wrong in issues or
+PRs. I could also use some nice branding if that tickles your fancy.
 
-1. [Sourcehut](https://git.sr.ht/~proycon/wvkbd) - Submit your patches using `git mail` to [~mil/sxmo-devel@lists.sr.ht](mailto:~mil/sxmo-devel@lists.sr.ht), follow [these contribution guidelines](https://sxmo.org/contribute/). Questions can also be asked on Sxmo's [mailing lists](https://sxmo.org/support/).
-2. [Github](https://github.com/jjsullivan5196/wvkbd/) - Submit a pull request or open an issue *(legacy method)*
-
-This project was started by [John Sullivan](https://jsullivan.cc/) and is
-currently being maintained by the [Sxmo](https://sxmo.org) project, whose
-maintainers will ensure both git remotes are kept in sync at all times.
-
-For code contributions, please run `make format` (requires `clang-format`)
-before sending a patch (opening a PR) and include as much relevant detail as
+For code contributions, all I ask for now is you run `make format` (requires
+`clang-format`) before opening a PR and include as much relevant detail as
 possible.
 
 ## Related projects
